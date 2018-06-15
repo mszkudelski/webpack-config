@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
+const webpack = require("webpack");
+
 module.exports = {
   entry: {
     app: "./src/index.js"
@@ -11,9 +13,10 @@ module.exports = {
   },
   devtool: "inline-source-map",
   devServer: {
-    contentBase: "./dist"
+    contentBase: "./dist",
+    hot: true
   },
-  mode: 'development',
+  mode: "development",
   module: {
     rules: [
       {
@@ -31,6 +34,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "index.html",
       template: "src/pages/index.html"
-    })
+    }),
+    new webpack.NamedModulesPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ]
 };

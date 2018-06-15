@@ -1,5 +1,6 @@
 import _ from "lodash";
 import './global.scss';
+import { callMe } from "./aa";
 
 function component() {
   var element = document.createElement("div");
@@ -13,4 +14,5 @@ function component() {
 
 window.addEventListener("load", () => {
   document.body.appendChild(component());
+  callMe();
 });
