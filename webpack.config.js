@@ -11,11 +11,12 @@ module.exports = {
     filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
-  devtool: "inline-source-map",
+  devtool: "source-map",
   devServer: {
     contentBase: "./dist",
     hot: true
   },
+  // TODO: should depend on env
   mode: "development",
   module: {
     rules: [
@@ -36,6 +37,11 @@ module.exports = {
       template: "src/pages/index.html"
     }),
     new webpack.NamedModulesPlugin(),
-    new webpack.HotModuleReplacementPlugin()
-  ]
+    new webpack.HotModuleReplacementPlugin(),
+  ],
+  optimization: {
+    splitChunks: {
+      chunks: "all"
+    }
+  }
 };
